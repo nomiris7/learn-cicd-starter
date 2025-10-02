@@ -41,6 +41,4 @@ jobs:
         run: echo $?
 
       - name: Check staticcheck
-        run: test -z $(staticcheck ./...)
-      - name: Print result
-        run: echo $?
+        run: staticcheck ./...
