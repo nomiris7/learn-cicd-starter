@@ -20,6 +20,11 @@ jobs:
 
       - name: Force Failure
         run: go test ./... -cover
+      - name: Install gosec
+        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
+
+      - name: Check vunaribilities
+        run: gosec ./...
   styles:
     name: Style
     runs-on: ubuntu-latest
@@ -41,8 +46,5 @@ jobs:
         run: test -z $(go fmt ./...)
       - name: Print result
         run: echo $?
-
       - name: Check staticcheck
         run: staticcheck ./...
-      - name: Check vunaribilities
-        run: gosec ./...
